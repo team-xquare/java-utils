@@ -20,7 +20,7 @@ jobs:
       - name: Grant permission to deploy.sh
         run: chmod 755 .github/workflows/commands/deploy.sh
       - name: Publish to the Maven Central Repository
-        run: .github/commands/deploy.sh
+        run: .github/workflows/commands/deploy.sh
         env: 
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
