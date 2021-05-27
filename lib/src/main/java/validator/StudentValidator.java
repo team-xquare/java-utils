@@ -9,6 +9,7 @@ public class StudentValidator {
     /**
      * 이메일 주소가 <a href="https://emailregex.com/">RFC 5322 표준</a>을 따르는지 검사합니다.
      * @param email 이메일 주소
+     * @return true: 검증 성공, false: 검증 실패
      */
     public static boolean isEmailValid(String email) {
         Pattern pattern = Pattern.compile("^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");

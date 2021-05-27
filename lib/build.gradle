@@ -48,8 +48,7 @@ publishing {
             artifactId = 'utils'
             version = '0.0.4'
 
-
-            artifact 'utils.jar'
+            from components.java
         }
     }
     repositories {
