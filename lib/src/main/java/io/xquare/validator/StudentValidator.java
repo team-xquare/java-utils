@@ -1,4 +1,4 @@
-package validator;
+package io.xquare.validator;
 
 import java.util.regex.Pattern;
 
