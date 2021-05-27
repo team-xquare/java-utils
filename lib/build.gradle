@@ -10,7 +10,7 @@ plugins {
 }
 
 group 'io.github.team-xquare'
-version '0.0.5-SNAPSHOT'
+version '0.0.6'
 
 repositories {
     mavenCentral()
@@ -46,7 +46,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'io.github.team-xquare'
             artifactId = 'utils'
-            version = '0.0.5'
+            version = '0.0.6'
 
             from components.java
         }
@@ -54,7 +54,7 @@ publishing {
     repositories {
         maven {
             name = "OSSRH"
-            url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            url = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
             credentials {
                 username = System.getenv("MAVEN_USERNAME")
                 password = System.getenv("MAVEN_PASSWORD")
