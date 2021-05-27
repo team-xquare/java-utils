@@ -10,7 +10,7 @@ plugins {
 }
 
 group 'io.github.team-xquare'
-version '0.0.6'
+version '0.0.7'
 
 repositories {
     mavenCentral()
@@ -46,7 +46,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'io.github.team-xquare'
             artifactId = 'utils'
-            version = '0.0.6'
+            version = '0.0.7'
 
             from components.java
         }
