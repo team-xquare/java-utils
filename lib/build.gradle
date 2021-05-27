@@ -10,7 +10,7 @@ plugins {
 }
 
 group 'io.github.team-xquare'
-version '0.0.8'
+version '0.0.9'
 
 repositories {
     mavenCentral()
@@ -29,7 +29,7 @@ test {
 
 task javadocJar(type: Jar) {
     archiveClassifier.set('javadoc')
-    from javadoc
+    from javadoc.destinationDir
 }
 
 task sourcesJar(type: Jar) {
@@ -37,18 +37,16 @@ task sourcesJar(type: Jar) {
     from sourceSets.main.allSource
 }
 
-artifacts {
-    archives javadocJar, sourcesJar
-}
-
 publishing {
     publications {
         maven(MavenPublication) {
             groupId = 'io.github.team-xquare'
             artifactId = 'utils'
-            version = '0.0.8'
+            version = '0.0.9'
 
             from components.java
+            artifact sourcesJar
+            artifact javadocJar
         }
     }
     repositories {
