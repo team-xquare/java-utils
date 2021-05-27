@@ -9,8 +9,8 @@ plugins {
     id 'maven-publish'
 }
 
-group 'java.team-xquare'
-version '0.0.3-SNAPSHOT'
+group 'io.github.team-xquare'
+version '0.0.4-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -27,7 +27,31 @@ test {
     useJUnitPlatform()
 }
 
+task javadocJar(type: Jar) {
+    archiveClassifier.set('javadoc')
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
 publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'io.github.team-xquare'
+            artifactId = 'utils'
+            version = '0.0.4'
+
+
+            artifact 'utils.jar'
+        }
+    }
     repositories {
         maven {
             name = "OSSRH"
