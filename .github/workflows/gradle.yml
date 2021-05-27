@@ -15,6 +15,8 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+      - name: Build packages
+        run: gradle build
       - name: Publish to the Maven Central Repository
         run: gradle publish
         env: 
