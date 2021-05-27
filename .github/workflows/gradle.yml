@@ -15,10 +15,17 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+      - name: Configure GPG Key
+        run: |
+          mkdir -p ~/.gnupg/
+          printf "$GPG_SIGNING_KEY" | base64 --decode > ~/.gnupg/private.key
+          gpg --import ~/.gnupg/private.key
+        env:
+          GPG_SECRET_KEY: ${{ secrets.GPG_SECRET_KEY }}
       - name: Build packages
         run: gradle build
       - name: Publish to the Maven Central Repository
-        run: gradle publish --info
+        run: .github/commands/deploy.sh
         env: 
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}

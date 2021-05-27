@@ -1,5 +1,6 @@
 # Gradle
 .gradle
+gradle.properties
 
 # IDE Settings
 .idea
