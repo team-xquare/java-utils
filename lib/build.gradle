@@ -9,7 +9,7 @@ plugins {
     id 'maven-publish'
 }
 
-group 'io.github.team-xquare'
+group 'java.team-xquare'
 version '0.0.2-SNAPSHOT'
 
 repositories {
