@@ -17,6 +17,8 @@ jobs:
           distribution: 'adopt'
       - name: Build packages
         run: gradle build
+      - name: Grant permission to deploy.sh
+        run: chmod 755 .github/commands/deploy.sh
       - name: Publish to the Maven Central Repository
         run: .github/commands/deploy.sh
         env: 
