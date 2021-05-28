@@ -8,20 +8,21 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'signing'
+    id 'groovy'
 }
 
 group 'io.github.team-xquare'
 version '0.1.0'
+
+sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testRuntimeOnly 'org.codehaus.groovy:groovy'
+    testImplementation group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.8', ext: 'pom'
     testImplementation "org.spockframework:spock-core:$spockVersion"
-    testImplementation "org.spockframework:spock-spring:$spockVersion"
-    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.5.0'
 }
 
 test {

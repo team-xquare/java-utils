@@ -16,4 +16,16 @@ public class StudentValidator {
 
         return pattern.matcher(email).matches();
     }
+
+    /**
+     *  학번을 통해 해당 학년이 맞는지 검사합니다.
+     * @param gcn 학번
+     * @param grade 학년
+     * @return true: 검증 성공, false: 검증 실패
+     */
+    public static boolean isGradeValid(String gcn, Integer grade) {
+        Pattern pattern = Pattern.compile("^[" + grade + "]");
+
+        return pattern.matcher(gcn).matches();
+    }
 }
