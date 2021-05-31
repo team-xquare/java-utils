@@ -24,12 +24,63 @@ public class StudentValidator {
     }
 
     /**
-     *  학번을 통해 해당 학년이 맞는지 검사합니다.
+     * 학번을 통해 해당 학년이 맞는지 검사합니다.
+     * 문자열 길이가 4자리를 넘었을 경우에는 검증에 실패합니다.
      * @param gcn 학번
      * @param grade 학년
      * @return true: 검증 성공, false: 검증 실패
      */
     public static boolean isGradeValid(String gcn, Integer grade) {
         return gcn.matches(grade + "[0-9]*$") && gcn.length() < 5;
+    }
+
+    /**
+     * 학번을 통해 해당 학년이 맞는지 검사합니다.
+     * 문자열 길이가 4자리를 넘었을 경우에는 검증에 실패합니다.
+     * @param gcn 학번
+     * @param grades 학년
+     * @return true: 검증 성공, false: 검증 실패
+     */
+    public static boolean isGradeValid(String gcn, Integer... grades) {
+        if (gcn.length() > 4)
+            return false;
+
+        for (int grade : grades) {
+            if (gcn.matches(grade + "[0-9]*$"))
+                return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * 학번을 통해 해당 학년이 맞는지 검사합니다.
+     * 문자열 길이가 4자리를 넘었을 경우에는 검증에 실패합니다.
+     * @param gcn 학번
+     * @param grade 학년
+     * @return true: 검증 성공, false: 검증 실패
+     */
+    public static boolean isGradeValid(Integer gcn, Integer grade) {
+        return gcn / 1000 == grade && gcn / 10000 == 0;
+    }
+
+    /**
+     * 학번을 통해 해당 학년이 맞는지 검사합니다.
+     * 문자열 길이가 4자리를 넘었을 경우에는 검증에 실패합니다.
+     * @param gcn 학번
+     * @param grades 학년
+     * @return true: 검증 성공, false: 검증 실패
+     */
+    public static boolean isGradeValid(Integer gcn, Integer... grades) {
+        if (gcn / 10000 != 0) {
+            return false;
+        }
+
+        for (int grade : grades) {
+            if (gcn / 1000 == grade)
+                return true;
+        }
+
+        return false;
     }
 }
