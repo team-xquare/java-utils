@@ -1,9 +1,19 @@
 package io.xquare.validator
 
 import spock.lang.Specification
+import spock.lang.Unroll
 
 class StudentValidatorSpec extends Specification {
-    def "isEmailValid 반환 값이 올바른지 검증"() {
+    def "StudentValidator 인스턴스화를 막는지 검증"() {
+        when:
+        StudentValidator validator = new StudentValidator()
+
+        then:
+        thrown AssertionError
+    }
+
+    @Unroll
+    def "isEmailValid 반환 값이 올바른지 검증 [이메일: #email, 예상 결과값: #expectedResult]"() {
         when:
         boolean result = StudentValidator.isEmailValid(email)
 
@@ -32,7 +42,7 @@ class StudentValidatorSpec extends Specification {
 
     }
 
-    def "IsGradeValid 반환 값이 올바른지 검증"() {
+    def "IsGradeValid 반환 값이 올바른지 검증 [학번: #gcn, 학년: #grade, 예상 결과값: #expectedResult]"() {
         when:
         boolean result = StudentValidator.isGradeValid(gcn, grade)
 
