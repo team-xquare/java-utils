@@ -113,3 +113,7 @@ jacocoTestReport {
         html.enabled = true
     }
 }
+
+coverallsJacoco {
+    reportPath = "lib/build/reports/jacoco/test/jacocoTestReport.xml"
+}
