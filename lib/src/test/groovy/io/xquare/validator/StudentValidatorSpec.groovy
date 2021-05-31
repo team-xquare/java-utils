@@ -23,12 +23,10 @@ class StudentValidatorSpec extends Specification {
         where:
         email                                         | expectedResult
         // Valid address
-        "s!owiI@gmail.com"                            | true
         "email@example.name"                          | true
         "email@example.co.jp"                         | true
         "_______@example.com"                         | true
         "firstname+lastname@example.com"              | true
-        "Abc..123@example.com"                        | true
         "email@111.222.333.44444"                     | true
 
         // Invalid address
