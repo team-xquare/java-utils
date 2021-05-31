@@ -24,9 +24,7 @@ jobs:
         distribution: 'adopt'
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    - name: Test with gradle
-      run: ./gradlew build
-    - name: Publish coverage
+    - name: Test and publish coverage
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
-      run: ./gradlew jacocoTestReport coverallsJacoco
+      run: gradle test jacocoTestReport coverallsJacoco
