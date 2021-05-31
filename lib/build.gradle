@@ -21,8 +21,9 @@ repositories {
 }
 
 dependencies {
-    testImplementation group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.8', ext: 'pom'
-    testImplementation "org.spockframework:spock-core:$spockVersion"
+    testImplementation platform("org.spockframework:spock-bom:2.0-groovy-3.0")
+    testImplementation "org.spockframework:spock-core"
+    testImplementation "org.spockframework:spock-junit4"
 }
 
 test {

@@ -24,8 +24,6 @@ public class StudentValidator {
      * @return true: 검증 성공, false: 검증 실패
      */
     public static boolean isGradeValid(String gcn, Integer grade) {
-        Pattern pattern = Pattern.compile("^[" + grade + "]");
-
-        return pattern.matcher(gcn).matches();
+        return gcn.matches(grade + "[0-9]*$") && gcn.length() < 5;
     }
 }
