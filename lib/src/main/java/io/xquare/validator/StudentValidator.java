@@ -6,6 +6,12 @@ import java.util.regex.Pattern;
  * 학생 정보와 관련된 검증을 하는 클래스입니다.
  */
 public class StudentValidator {
+    /*
+     * 객체 생성을 막기 위한 생성자
+     */
+    private StudentValidator() {
+        throw new AssertionError();
+    }
     /**
      * 이메일 주소가 <a href="https://emailregex.com/">RFC 5322 표준</a>을 따르는지 검사합니다.
      * @param email 이메일 주소
