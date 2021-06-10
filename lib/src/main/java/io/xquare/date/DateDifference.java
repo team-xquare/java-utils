@@ -18,6 +18,10 @@ public class DateDifference {
         this.second = second;
     }
 
+    public static DateDifference.DateDifferenceBuilder builder() {
+        return new DateDifference.DateDifferenceBuilder();
+    }
+
     public long getYear() {
         return year;
     }
@@ -40,10 +44,6 @@ public class DateDifference {
 
     public long getSecond() {
         return second;
-    }
-
-    public static DateDifference.DateDifferenceBuilder builder() {
-        return new DateDifference.DateDifferenceBuilder();
     }
 
     public static class DateDifferenceBuilder {

@@ -234,6 +234,7 @@ class DateCompareSpec extends Specification {
         result.getYear() == 1
         result.getMonth() == 13
     }
+
     def "DateCompare Calendar와 Calendar 비교 [비교된 날짜: #sourceDate, 비교한 날짜: #targetDate]"() {
         given:
         Calendar sourceDate = Calendar.getInstance()
