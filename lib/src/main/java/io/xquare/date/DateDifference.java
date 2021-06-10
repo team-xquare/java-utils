@@ -3,21 +3,19 @@ package io.xquare.date;
 public class DateDifference {
 
     private final int year;
-
     private final int month;
+    private final int day;
+    private final long hour;
+    private final long minute;
+    private final long second;
 
-    private final int dayOfWeek;
-
-    private final int dayOfMonth;
-
-    private final int dayOfYear;
-
-    private DateDifference(int year, int month, int dayOfWeek, int dayOfMonth, int dayOfYear) {
+    private DateDifference(int year, int month, int day, long hour, long minute, long second) {
         this.year = year;
         this.month = month;
-        this.dayOfYear = dayOfYear;
-        this.dayOfMonth = dayOfMonth;
-        this.dayOfWeek = dayOfWeek;
+        this.day = day;
+        this.hour = hour;
+        this.minute = minute;
+        this.second = second;
     }
 
     public int getYear() {
@@ -28,16 +26,20 @@ public class DateDifference {
         return month;
     }
 
-    public int getDayOfMonth() {
-        return dayOfMonth;
+    public int getDay() {
+        return day;
     }
 
-    public int getDayOfWeek() {
-        return dayOfWeek;
+    public long getHour() {
+        return hour;
     }
 
-    public int getDayOfYear() {
-        return dayOfYear;
+    public long getMinute() {
+        return minute;
+    }
+
+    public long getSecond() {
+        return second;
     }
 
     public static DateDifference.DateDifferenceBuilder builder() {
@@ -47,9 +49,10 @@ public class DateDifference {
     public static class DateDifferenceBuilder {
         private int year;
         private int month;
-        private int dayOfWeek;
-        private int dayOfMonth;
-        private int dayOfYear;
+        private int day;
+        private long hour;
+        private long minute;
+        private long second;
 
         public DateDifference.DateDifferenceBuilder year(final int year) {
             this.year = year;
@@ -61,35 +64,28 @@ public class DateDifference {
             return this;
         }
 
-        public DateDifference.DateDifferenceBuilder dayOfWeek(final int dayOfWeek) {
-            this.dayOfWeek = dayOfWeek;
+        public DateDifference.DateDifferenceBuilder day(final int day) {
+            this.day = day;
             return this;
         }
 
-        public DateDifference.DateDifferenceBuilder dayOfMonth(final int dayOfMonth) {
-            this.dayOfMonth = dayOfMonth;
+        public DateDifference.DateDifferenceBuilder hour(final long hour) {
+            this.hour = hour;
             return this;
         }
 
-        public DateDifference.DateDifferenceBuilder dayOfYear(final int dayOfYear) {
-            this.dayOfYear = dayOfYear;
+        public DateDifference.DateDifferenceBuilder minute(final long minute) {
+            this.minute = minute;
+            return this;
+        }
+
+        public DateDifference.DateDifferenceBuilder second(final long second) {
+            this.second = second;
             return this;
         }
 
         public DateDifference build() {
-            if (!isValid(year, month, dayOfWeek, dayOfMonth, dayOfYear)) {
-                throw new AssertionError();
-            }
-
-            return new DateDifference(this.year, this.month, this.dayOfWeek, this.dayOfMonth, this.dayOfYear);
-        }
-
-        private boolean isValid(int year, int month, int dayOfWeek, int dayOfMonth, int dayOfYear) {
-            return year >= 1
-                    && month >= 0 && month <= 12
-                    && dayOfMonth >= 1 && dayOfMonth <= 31
-                    && dayOfWeek >= 0 && dayOfWeek <= 7
-                    && dayOfYear >= 0 && dayOfYear <= 366;
+            return new DateDifference(this.year, this.month, this.day, this.hour, this.minute, this.second);
         }
     }
 }
