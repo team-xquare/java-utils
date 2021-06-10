@@ -2,14 +2,14 @@ package io.xquare.date;
 
 public class DateDifference {
 
-    private final int year;
-    private final int month;
-    private final int day;
+    private final long year;
+    private final long month;
+    private final long day;
     private final long hour;
     private final long minute;
     private final long second;
 
-    private DateDifference(int year, int month, int day, long hour, long minute, long second) {
+    private DateDifference(long year, long month, long day, long hour, long minute, long second) {
         this.year = year;
         this.month = month;
         this.day = day;
@@ -18,15 +18,15 @@ public class DateDifference {
         this.second = second;
     }
 
-    public int getYear() {
+    public long getYear() {
         return year;
     }
 
-    public int getMonth() {
+    public long getMonth() {
         return month;
     }
 
-    public int getDay() {
+    public long getDay() {
         return day;
     }
 
@@ -47,24 +47,24 @@ public class DateDifference {
     }
 
     public static class DateDifferenceBuilder {
-        private int year;
-        private int month;
-        private int day;
+        private long year;
+        private long month;
+        private long day;
         private long hour;
         private long minute;
         private long second;
 
-        public DateDifference.DateDifferenceBuilder year(final int year) {
+        public DateDifference.DateDifferenceBuilder year(final long year) {
             this.year = year;
             return this;
         }
 
-        public DateDifference.DateDifferenceBuilder month(final int month) {
+        public DateDifference.DateDifferenceBuilder month(final long month) {
             this.month = month;
             return this;
         }
 
-        public DateDifference.DateDifferenceBuilder day(final int day) {
+        public DateDifference.DateDifferenceBuilder day(final long day) {
             this.day = day;
             return this;
         }
