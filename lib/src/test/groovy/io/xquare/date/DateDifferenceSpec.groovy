@@ -3,101 +3,123 @@ package io.xquare.date
 import spock.lang.Specification
 
 class DateDifferenceSpec extends Specification {
-    def "DateCompare day 빌더 검증 [날짜: #day]"() {
+
+    def "DateCompare 빌더 전체 검증 [월: #month, 년도: #year, DayOfWeek: #dayOfWeek, dayOfMonth: #dayOfMonth, dayOfYear: #dayOfYear]"() {
         when:
         DateDifference diff = DateDifference.builder()
-                .day(day)
-                .build()
-
-        then:
-        diff.day == day
-        diff.totalDays == 0
-        diff.month == 0
-        diff.year == 0
-
-        where:
-        day | _
-        10  | _
-        20  | _
-        5   | _
-    }
-
-    def "DateCompare month 빌더 검증 [월: #month]"() {
-        when:
-        DateDifference diff = DateDifference.builder()
+                .dayOfWeek(dayOfWeek)
+                .dayOfMonth(dayOfMonth)
+                .dayOfYear(dayOfYear)
                 .month(month)
+                .year(year)
                 .build()
 
         then:
         diff.month == month
-        diff.day == 0
-        diff.totalDays == 0
-        diff.year == 0
-
-        where:
-        month   | _
-        1       | _
-        2       | _
-        3       | _
-    }
-
-    def "DateCompare year 빌더 검증 [년도: #year]"() {
-        when:
-        DateDifference diff = DateDifference.builder()
-                .year(year)
-                .build()
-
-        then:
-        diff.month == 0
-        diff.day == 0
-        diff.totalDays == 0
+        diff.dayOfYear == dayOfYear
+        diff.dayOfMonth == dayOfMonth
+        diff.dayOfWeek == dayOfWeek
         diff.year == year
 
         where:
-        year    | _
-        1       | _
-        2       | _
-        3       | _
+        month     | year      | dayOfYear     | dayOfWeek     | dayOfMonth
+        1         | 3         | 20            | 6            | 10
+        1         | 10        | 30            | 4            | 20
+        4         | 20        | 20            | 3            | 20
     }
 
-    def "DateCompare totalDays 빌더 검증 [총 날짜 수: #totalDays]"() {
+    def "DateCompare 빌더 Month에서 AssertionError [월: #month, 년도: #year, DayOfWeek: #dayOfWeek, dayOfMonth: #dayOfMonth, dayOfYear: #dayOfYear]"() {
         when:
         DateDifference diff = DateDifference.builder()
-                .totalDays(totalDays)
-                .build()
-
-        then:
-        diff.month == 0
-        diff.day == 0
-        diff.totalDays == totalDays
-        diff.year == 0
-
-        where:
-        totalDays    | _
-        1            | _
-        2            | _
-        3            | _
-    }
-
-    def "DateCompare 빌더 전체 검증 [일: #day, 월: #month, 년도: #year, 총 날짜 수: #totalDays]"() {
-        when:
-        DateDifference diff = DateDifference.builder()
-                .day(day)
+                .dayOfWeek(dayOfWeek)
+                .dayOfMonth(dayOfMonth)
+                .dayOfYear(dayOfYear)
                 .month(month)
                 .year(year)
-                .totalDays(totalDays)
                 .build()
 
         then:
-        diff.month == month
-        diff.day == day
-        diff.totalDays == totalDays
-        diff.year == year
+        thrown AssertionError
 
         where:
-        day     | month     | year      | totalDays
-        1       | 1         | 3         | 20
-        20      | 30        | 10        | 30
-        10      | 40        | 20        | 20
+        month     | year      | dayOfYear     | dayOfWeek     | dayOfMonth
+        13        | 3         | 20            | 6            | 10
+        -1        | 10        | 30            | 4            | 20
     }
+
+    def "DateCompare 빌더 year에서 AssertionError [월: #month, 년도: #year, DayOfWeek: #dayOfWeek, dayOfMonth: #dayOfMonth, dayOfYear: #dayOfYear]"() {
+        when:
+        DateDifference diff = DateDifference.builder()
+                .dayOfWeek(dayOfWeek)
+                .dayOfMonth(dayOfMonth)
+                .dayOfYear(dayOfYear)
+                .month(month)
+                .year(year)
+                .build()
+
+        then:
+        thrown AssertionError
+
+        where:
+        month     | year      | dayOfYear     | dayOfWeek     | dayOfMonth
+        2        | -1         | 20            | 6             | 10
+    }
+
+    def "DateCompare 빌더 dayOfYear에서 AssertionError [월: #month, 년도: #year, DayOfWeek: #dayOfWeek, dayOfMonth: #dayOfMonth, dayOfYear: #dayOfYear]"() {
+        when:
+        DateDifference diff = DateDifference.builder()
+                .dayOfWeek(dayOfWeek)
+                .dayOfMonth(dayOfMonth)
+                .dayOfYear(dayOfYear)
+                .month(month)
+                .year(year)
+                .build()
+
+        then:
+        thrown AssertionError
+
+        where:
+        month     | year      | dayOfYear     | dayOfWeek     | dayOfMonth
+        2        | 10         | 2000          | 6             | 10
+        2        | 10         | -1            | 6             | 10
+    }
+
+    def "DateCompare 빌더 dayOfWeek에서 AssertionError [월: #month, 년도: #year, DayOfWeek: #dayOfWeek, dayOfMonth: #dayOfMonth, dayOfYear: #dayOfYear]"() {
+        when:
+        DateDifference diff = DateDifference.builder()
+                .dayOfWeek(dayOfWeek)
+                .dayOfMonth(dayOfMonth)
+                .dayOfYear(dayOfYear)
+                .month(month)
+                .year(year)
+                .build()
+
+        then:
+        thrown AssertionError
+
+        where:
+        month     | year      | dayOfYear     | dayOfWeek     | dayOfMonth
+        2        | 20         | 20            | 8             | 10
+        2        | 20         | 20            | -1            | 10
+    }
+
+    def "DateCompare 빌더 dayOfMonth에서 AssertionError [월: #month, 년도: #year, DayOfWeek: #dayOfWeek, dayOfMonth: #dayOfMonth, dayOfYear: #dayOfYear]"() {
+        when:
+        DateDifference.builder()
+                .dayOfWeek(dayOfWeek)
+                .dayOfMonth(dayOfMonth)
+                .dayOfYear(dayOfYear)
+                .month(month)
+                .year(year)
+                .build()
+
+        then:
+        thrown AssertionError
+
+        where:
+        month     | year      | dayOfYear     | dayOfWeek     | dayOfMonth
+        2        | 20         | 20            | 8             | 400
+        2        | 20         | 20            | -1            | -10
+    }
+
 }
