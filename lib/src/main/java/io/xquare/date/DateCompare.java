@@ -206,9 +206,8 @@ public class DateCompare {
     }
 
     public static LocalDate dateToLocalDateTime(Date date) {
-        System.out.println(date);
         return date.toInstant()
-                .atZone(ZoneId.systemDefault())
+                .atZone(ZoneId.of("Asia/Seoul"))
                 .toLocalDate();
     }
 
