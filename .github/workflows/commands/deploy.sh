@@ -3,7 +3,7 @@ IFS=$'\n\t'
 
 function cleanup {
     echo "🧹 Cleanup..."
-    rm -f gradle.properties golo-dev-sign.asc
+    rm -f gradle.properties smoothbear04-sign.asc.gpg
 }
 
 trap cleanup SIGINT SIGTERM ERR EXIT
